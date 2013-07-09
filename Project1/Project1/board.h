@@ -1,15 +1,17 @@
 #ifndef board_h
 #define board_h
+#include "boardObject.h"
+
 class board
 {
 public:
 	board();
 	~board();
-	void print(char barray[11][10]);
+	void print(boardObject barray[11][10]);
 private:
 	int i;
 	int j;
-	char barray[11][10];
+	boardObject barray[11][10];
 
 };
 
