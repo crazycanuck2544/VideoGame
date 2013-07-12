@@ -7,6 +7,7 @@ using namespace std;
 class boardObject
 {
 public:
+	int q;
 	boardObject(void);
 	~boardObject(void);
 	virtual string toString(void) const;
