@@ -19,7 +19,7 @@ void board::print(boardObject barray[11][10])
 	{
 		for(j = 0; j<10; j++)
 		{
-			cout<<char(barray[i][j].q);
+			cout<<barray[i][j].toString();
 			//cout<<1;
 		}
 		cout<<"\n";
@@ -32,9 +32,9 @@ int main()
 	boardObject barray[11][10];
 	for(int i =0; i<11; i++)
 	{
-		for(int j = 0; j<11; j++)
+		for(int j = 0; j<10; j++)
 		{
-			barray[11][10].q = 1;
+			barray[i][j].q = rand() % 4;
 		}
 	}
 

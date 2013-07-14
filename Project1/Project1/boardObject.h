@@ -8,8 +8,8 @@ class boardObject
 {
 public:
 	int q;
-	boardObject(void);
-	~boardObject(void);
+	boardObject();
+	~boardObject();
 	virtual string toString(void) const;
 };
 

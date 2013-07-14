@@ -3,23 +3,23 @@
 #include <stdlib.h>
 
 
-boardObject::boardObject(void)
+boardObject::boardObject()
 {
-	int q;
+	int q=0;
 }
 
 
-boardObject::~boardObject(void)
+boardObject::~boardObject()
 {
 }
 
 std::string boardObject::toString(void) const
 {
-	if(this->q == 1)
+	if(this->q == 0)
 		return "Terrain";
-	else if(this->q == 2)
+	else if(this->q == 1)
 		return "Unit";
-	else if (this->q == 3)
+	else if (this->q == 2)
 		return "Building";
 	else
 		return "Empty";
