@@ -2,7 +2,7 @@
 #define treeObject_h
 #include "boardObject.h"
 
-class treeObject
+class treeObject : public boardObject
 {
 public:
 	treeObject(void);

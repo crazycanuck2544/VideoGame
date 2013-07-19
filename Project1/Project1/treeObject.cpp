@@ -14,5 +14,7 @@ treeObject::~treeObject(void)
 
 std::string treeObject::toString(void) const
 {
-	return "tree";
+	//cout<<"found a tree! ";
+	return boardObject::toString() + "-tree" ;
 }
+

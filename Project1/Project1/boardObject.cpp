@@ -5,8 +5,9 @@
 
 boardObject::boardObject()
 {
-	int q=0;
+	int q=-1;
 }
+
 
 
 boardObject::~boardObject()
@@ -16,11 +17,11 @@ boardObject::~boardObject()
 std::string boardObject::toString(void) const
 {
 	if(this->q == 0)
-		return "Terrain";
+		return "T";
 	else if(this->q == 1)
-		return "Unit";
+		return "U";
 	else if (this->q == 2)
-		return "Building";
+		return "B";
 	else
-		return "Empty";
+		return "E";
 }
