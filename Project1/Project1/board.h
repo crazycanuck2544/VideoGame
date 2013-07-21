@@ -10,11 +10,13 @@ class board
 public:
 	board();
 	~board();
-	void print(boardObject* barray[11][10]);
+	void print(boardObject* barray[11][8]);
+	void init();
+	void get(boardObject* out[11][8]);
 private:
 	int i;
 	int j;
-	boardObject* barray[11][10];
+	boardObject* barray[11][8];
 
 };
 

@@ -7,16 +7,54 @@ board::board()
 {
 	int i;
 	int j;
-	//boardObject barray[11][10];
-	boardObject* barray[11][10];
+	//boardObject* barray[11][10];
 }
 board::~board()
 {
-	cout<<"destructor"<<endl;
+	//cout<<"board-destructor"<<endl;
 }
-void board::print(boardObject* barray[11][10])
+void board::init()
 {
-	cout << "     \t0\t1\t2\t3\t4\t5\t6\t7\t8\t9\n";
+	
+	for(int a =0; a<11; a++)
+	{
+		for(int j = 0; j<8; j++)
+		{
+			int x = rand() % 40;
+			boardObject* temp = new boardObject();
+			temp->q = x;
+			
+			if(x <5){
+				temp= new treeObject();
+				temp->q = 0;
+			}
+			
+			if(x == 5){
+				temp= new houseObject();
+				temp->q = 2;
+			}
+			barray[a][j] = temp;
+			
+		}
+	}
+	
+	cout << "\n";
+}
+void board::get(boardObject* out[11][8])
+{
+		for (int a=0; a<11; a++)
+			for (int b=0; b<10; b++)
+				out[a][b] = barray[a][b];
+		/*
+		cout << "------------   Out Print   ------------\n";
+		print(out);
+		cout << "---------------------------------------\n";
+		*/
+}
+
+void board::print(boardObject* barray[11][8])
+{
+	cout << "     \t0\t1\t2\t3\t4\t5\t6\t7\n";
 	cout <<	"     --------------------------------------------------------------------\n";
 	for(i = 0; i<11; i++)
 	{
@@ -26,23 +64,15 @@ void board::print(boardObject* barray[11][10])
 		cout << i; 
 		cout << "|\t";
 
-		for(j = 0; j<10; j++)
+		for(j = 0; j<9; j++)
 		{
-			/*
-			if (dynamic_cast<>(barray[i][j]))
-				cout<<"TREE";
-			*/
 			cout<<barray[i][j]->toString() + "\t";
-			
-			
-			//boardObject & b = barray[i][j];
-			//cout << b.toString() + " ";
-			
 		}
 		cout<<"\n  | ";
 		cout<<endl;
 	}
 }
+/*
 int main()
 {
 	board board1;
@@ -89,3 +119,4 @@ int main()
 	std::cin.get();
 	return 0;
 }
+*/
