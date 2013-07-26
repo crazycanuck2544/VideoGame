@@ -5,9 +5,12 @@
 
 boardObject::boardObject()
 {
-	int q=-1;
 }
-
+boardObject::boardObject(int x, int y)
+{
+	xloc = x;
+	yloc = y;
+}
 
 
 boardObject::~boardObject()
@@ -22,6 +25,8 @@ std::string boardObject::toString(void) const
 		return "U";
 	else if (this->q == 2)
 		return "B";
+	else if (this->q == 777)
+		return "*";
 	else
-		return "E";
+		return "_";
 }

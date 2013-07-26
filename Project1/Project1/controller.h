@@ -12,7 +12,7 @@ class controller
 public:
 	controller();
 	~controller();
-	void print(boardObject* barray[11][8]);
+	void print(boardObject* barray[30][30]);
 private:
 	
 	board board1;

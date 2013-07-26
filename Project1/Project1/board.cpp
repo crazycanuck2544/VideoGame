@@ -7,6 +7,7 @@ board::board()
 {
 	int i;
 	int j;
+	numUnits = -1;
 	//boardObject* barray[11][10];
 }
 board::~board()
@@ -15,56 +16,159 @@ board::~board()
 }
 void board::init()
 {
-	
-	for(int a =0; a<11; a++)
+	numUnits = 0;
+	for(int a =0; a<30; a++)
 	{
-		for(int j = 0; j<8; j++)
+		for(int j = 0; j<30; j++)
 		{
-			int x = rand() % 40;
+			int x = rand() % 200;
 			boardObject* temp = new boardObject();
 			temp->q = x;
 			
-			if(x <5){
+			if(x <20){
 				temp= new treeObject();
 				temp->q = 0;
 			}
 			
-			if(x == 5){
+			if(x >20 && x <25){
 				temp= new houseObject();
 				temp->q = 2;
+			}
+			if(x == 25){
+				
+				unitList[numUnits] = new unitObject(a,j,numUnits);
+				temp = unitList[numUnits];
+				numUnits++;
 			}
 			barray[a][j] = temp;
 			
 		}
 	}
+	unitObject* u = new unitObject(0,0,numUnits);
+	unitList[numUnits] = u;
+	numUnits++;
+	barray[0][0] = u;
 	
 	cout << "\n";
 }
-void board::get(boardObject* out[11][8])
+int board::getNumUnits(void)
 {
-		for (int a=0; a<11; a++)
-			for (int b=0; b<10; b++)
-				out[a][b] = barray[a][b];
+	return numUnits;
+}
+void board::setDest(int n, int x, int y)
+{
+	unitList[n]->setDest(x,y);
+}
+void board::update(void)
+{
+	if(numUnits == -1)
+		return;
+	for(int a =0; a<numUnits; a++){
+		if(unitList[a]->isMoving())
+		{
+			//simple movement for now
+			/*
+			cout<< "xloc: " ;
+			cout<<unitList[a]->xloc;
+			cout<< "\nyloc: " ;
+			cout<<unitList[a]->yloc;
+			cout<< "\n";
+			*/
+			barray[unitList[a]->xloc][unitList[a]->yloc] = new boardObject(unitList[a]->xloc,unitList[a]->yloc);
+			if(unitList[a]->xloc > unitList[a]->xdest)
+			{
+				if(unitList[a]->yloc > unitList[a]->ydest)
+				{
+					unitList[a]->xloc --;
+					unitList[a]->yloc --;	
+				}
+				else if(unitList[a]->yloc < unitList[a]->ydest)
+				{
+					unitList[a]->xloc --;
+					unitList[a]->yloc ++;			
+				}
+				else
+				{
+					unitList[a]->xloc --;			
+				}
+			}
+			else if(unitList[a]->xloc < unitList[a]->xdest)
+			{
+				if(unitList[a]->yloc > unitList[a]->ydest)
+				{
+					unitList[a]->xloc ++;
+					unitList[a]->yloc --;	
+				}
+				else if(unitList[a]->yloc < unitList[a]->ydest)
+				{
+					unitList[a]->xloc ++;
+					unitList[a]->yloc ++;				
+				}
+				else
+				{
+					unitList[a]->xloc ++;			
+				}
+			}
+			else //xloc = xdest
+			{
+				if(unitList[a]->yloc > unitList[a]->ydest)
+				{
+					unitList[a]->yloc --;	
+				}
+				else if(unitList[a]->yloc < unitList[a]->ydest)
+				{
+					unitList[a]->yloc ++;
+				}
+				else
+				{
+					unitList[a]->stopMoving();
+				}
+			}
+
+		}
+		barray[unitList[a]->xloc][unitList[a]->yloc] = unitList[a];
 		/*
-		cout << "------------   Out Print   ------------\n";
-		print(out);
-		cout << "---------------------------------------\n";
+			cout<< "new xloc: " ;
+			cout<<unitList[a]->xloc;
+			cout<< "\nnew yloc: " ;
+			cout<<unitList[a]->yloc;
+			cout<< "\n";
 		*/
+		if(unitList[a]->xloc == unitList[a]->xdest && unitList[a]->yloc == unitList[a]->ydest)
+		{
+			unitList[a]->stopMoving();
+		}
+	}
+	
+
+}
+void board::get(boardObject* out[30][30])
+{
+		for (int a=0; a<30; a++)
+			for (int b=0; b<30; b++)
+				out[a][b] = barray[a][b];
 }
 
-void board::print(boardObject* barray[11][8])
+unitObject* board::findUnitInit(void)
+{
+		//return barray[0][0];
+		return dynamic_cast<unitObject*> (barray[0][0]);
+				
+}
+
+void board::print(boardObject* barray[30][30])
 {
 	cout << "     \t0\t1\t2\t3\t4\t5\t6\t7\n";
 	cout <<	"     --------------------------------------------------------------------\n";
 	for(i = 0; i<11; i++)
 	{
 		
-		if (i < 10)
+		if (i < 30)
 			cout << " ";
 		cout << i; 
 		cout << "|\t";
 
-		for(j = 0; j<9; j++)
+		for(j = 0; j<30; j++)
 		{
 			cout<<barray[i][j]->toString() + "\t";
 		}
@@ -72,51 +176,3 @@ void board::print(boardObject* barray[11][8])
 		cout<<endl;
 	}
 }
-/*
-int main()
-{
-	board board1;
-	boardObject* barray[11][10];
-	for(int i =0; i<11; i++)
-	{
-		for(int j = 0; j<10; j++)
-		{
-			int x = rand() % 4;
-			boardObject* b = new boardObject();
-			b->q = x;
-			//barray[i][j]->q = 0;
-			if(x == 0){
-				cout << "\ncreating a tree at (";
-				cout << i;
-				cout << ")(";
-				cout << j;
-				cout << ")\n";
-				
-				b= new treeObject();
-				b->q = 0;
-				cout << b->toString();
-				//barray[i][j] = t;
-			}
-			if(x == 2){
-				cout << "\ncreating a house at (";
-				cout << i;
-				cout << ")(";
-				cout << j;
-				cout << ")\n";
-				
-				b= new houseObject();
-				b->q = 2;
-				cout << b->toString();
-				//barray[i][j] = t;
-			}
-			barray[i][j] = b;
-		}
-	}
-	cout << "\n";
-	
-
-	board1.print(barray);
-	std::cin.get();
-	return 0;
-}
-*/

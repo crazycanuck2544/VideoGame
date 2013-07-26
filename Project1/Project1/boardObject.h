@@ -7,8 +7,9 @@ using namespace std;
 class boardObject
 {
 public:
-	int q;
+	int q,xloc,yloc;
 	boardObject();
+	boardObject(int x, int y);
 	~boardObject();
 	virtual string toString(void) const;
 };

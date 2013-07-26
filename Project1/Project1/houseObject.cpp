@@ -7,7 +7,11 @@ houseObject::houseObject(void)
 {
 }
 
-
+houseObject::houseObject(int x, int y)
+{
+	xloc = x;
+	yloc = y;
+}
 houseObject::~houseObject(void)
 {
 }
@@ -15,5 +19,5 @@ houseObject::~houseObject(void)
 std::string houseObject::toString(void) const
 {
 	//cout<<"found a house! ";
-	return boardObject::toString() + "-house" ;
+	return boardObject::toString();// + "-house" ;
 }

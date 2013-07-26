@@ -6,6 +6,7 @@ class treeObject : public boardObject
 {
 public:
 	treeObject(void);
+	treeObject(int x, int y);
 	~treeObject(void);
 	virtual string toString(void) const;
 };

@@ -7,6 +7,11 @@ treeObject::treeObject(void)
 {
 }
 
+treeObject::treeObject(int x, int y)
+{
+	xloc = x;
+	yloc = y;
+}
 
 treeObject::~treeObject(void)
 {
@@ -15,6 +20,6 @@ treeObject::~treeObject(void)
 std::string treeObject::toString(void) const
 {
 	//cout<<"found a tree! ";
-	return boardObject::toString() + "-tree" ;
+	return boardObject::toString();// + "-tree" ;
 }
 

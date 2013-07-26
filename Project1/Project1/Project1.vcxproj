@@ -67,12 +67,14 @@
     <ClCompile Include="boardObject.cpp" />
     <ClCompile Include="houseObject.cpp" />
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="unitObject.cpp" />
     <ClCompile Include="treeObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h" />
     <ClInclude Include="boardObject.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="unitObject.h" />
     <ClInclude Include="houseObject.h" />
     <ClInclude Include="treeObject.h" />
   </ItemGroup>
