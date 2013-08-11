@@ -6,13 +6,22 @@
 boardObject::boardObject()
 {
 }
-boardObject::boardObject(int x, int y)
+boardObject::boardObject(int xl, int yl, int xs, int ys)
 {
-	xloc = x;
-	yloc = y;
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
 }
 
-
+boardObject::boardObject(int xl, int yl, int xs, int ys, int qin)
+{
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
+	q = qin;
+} 
 boardObject::~boardObject()
 {
 }
@@ -27,6 +36,8 @@ std::string boardObject::toString(void) const
 		return "B";
 	else if (this->q == 777)
 		return "*";
+	else if (this->q == 888) //occupied
+		return "X";
 	else
 		return "_";
 }

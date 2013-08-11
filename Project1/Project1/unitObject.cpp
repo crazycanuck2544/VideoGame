@@ -8,21 +8,25 @@ unitObject::unitObject(void)
 	this->q = 777;
 }
 
-unitObject::unitObject(int x, int y)
+unitObject::unitObject(int xl, int yl, int xs, int ys)
 {
 	id = 0;
 	this->q = 777;
-	xloc = x;
-	yloc = y;
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
 	moving = false;
 }
 
-unitObject::unitObject(int x, int y, int i)
+unitObject::unitObject(int xl, int yl, int xs, int ys, int i)
 {
 	id = i;
 	this->q = 777;
-	xloc = x;
-	yloc = y;
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
 	moving = false;
 }
 

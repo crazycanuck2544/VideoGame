@@ -5,8 +5,7 @@ using namespace std;
 
 board::board()
 {
-	int i;
-	int j;
+	
 	numUnits = -1;
 	//boardObject* barray[11][10];
 }
@@ -36,7 +35,7 @@ void board::init()
 			}
 			if(x == 25){
 				
-				unitList[numUnits] = new unitObject(a,j,numUnits);
+				unitList[numUnits] = new unitObject(a,j,1,1,numUnits);
 				temp = unitList[numUnits];
 				numUnits++;
 			}
@@ -44,7 +43,7 @@ void board::init()
 			
 		}
 	}
-	unitObject* u = new unitObject(0,0,numUnits);
+	unitObject* u = new unitObject(0,0,2,2,numUnits);
 	unitList[numUnits] = u;
 	numUnits++;
 	barray[0][0] = u;
@@ -74,7 +73,11 @@ void board::update(void)
 			cout<<unitList[a]->yloc;
 			cout<< "\n";
 			*/
-			barray[unitList[a]->xloc][unitList[a]->yloc] = new boardObject(unitList[a]->xloc,unitList[a]->yloc);
+			for(int b = 0; b < unitList[a]->xsize; b++){
+				for(int c = 0; c < unitList[a]->xsize; c++){
+					barray[(unitList[a]->xloc)+b][(unitList[a]->yloc)+c] = new boardObject((unitList[a]->xloc)+b,(unitList[a]->yloc)+c,1,1);
+				}
+			}
 			if(unitList[a]->xloc > unitList[a]->xdest)
 			{
 				if(unitList[a]->yloc > unitList[a]->ydest)
@@ -127,6 +130,13 @@ void board::update(void)
 
 		}
 		barray[unitList[a]->xloc][unitList[a]->yloc] = unitList[a];
+		for(int b = 0; b < unitList[a]->xsize; b++){
+			for(int c = 0; c < unitList[a]->xsize; c++){
+				if(b != 0 || c != 0){
+					barray[(unitList[a]->xloc)+b][(unitList[a]->yloc)+c] = new boardObject((unitList[a]->xloc)+b,(unitList[a]->yloc)+c,1,1,888);
+				}
+			}
+		}
 		/*
 			cout<< "new xloc: " ;
 			cout<<unitList[a]->xloc;

@@ -8,8 +8,10 @@ class boardObject
 {
 public:
 	int q,xloc,yloc;
+	int xsize,ysize;
 	boardObject();
-	boardObject(int x, int y);
+	boardObject(int xl, int yl, int xs, int ys);
+	boardObject(int xl, int yl, int xs, int ys, int qin);
 	~boardObject();
 	virtual string toString(void) const;
 };

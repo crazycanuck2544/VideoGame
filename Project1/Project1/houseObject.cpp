@@ -7,11 +7,14 @@ houseObject::houseObject(void)
 {
 }
 
-houseObject::houseObject(int x, int y)
+houseObject::houseObject(int xl, int yl, int xs, int ys)
 {
-	xloc = x;
-	yloc = y;
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
 }
+
 houseObject::~houseObject(void)
 {
 }

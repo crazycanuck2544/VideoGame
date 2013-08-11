@@ -7,11 +7,14 @@ treeObject::treeObject(void)
 {
 }
 
-treeObject::treeObject(int x, int y)
+treeObject::treeObject(int xl, int yl, int xs, int ys)
 {
-	xloc = x;
-	yloc = y;
+	xloc = xl;
+	yloc = yl;
+	xsize = xs;
+	ysize = ys;
 }
+
 
 treeObject::~treeObject(void)
 {

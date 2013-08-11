@@ -6,8 +6,8 @@ class unitObject : public boardObject
 {
 public:
 	unitObject(void);
-	unitObject(int x, int y);
-	unitObject(int x, int y, int i);
+	unitObject(int xl, int yl, int xs, int ys);
+	unitObject(int xl, int yl, int xs, int ys, int i);
 	~unitObject(void);
 	virtual string toString(void) const;
 	bool isMoving(void);

@@ -7,7 +7,7 @@ class houseObject : public boardObject
 public:
 	houseObject(void);
 	~houseObject(void);
-	houseObject(int x, int y);
+	houseObject(int xl, int yl, int xs, int ys);
 	virtual string toString(void) const;
 };
 
